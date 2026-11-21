@@ -1,76 +1,83 @@
-# SketchyBar Config
+# SketchyBar Minimalist Vertical Dock
 
-This repository is my personal configuration for [SketchyBar](https://github.com/FelixKratz/SketchyBar), a macOS plugin to customize the top menu bar. My configuration is largely derived from and built upon [this repository](https://github.com/FelixKratz/dotfiles).
+A sleek, frosted-glass vertical floating status bar for macOS powered by [SketchyBar](https://github.com/FelixKratz/SketchyBar) and integrated seamlessly with the [Cranberry](https://github.com/koekeishiya/yabai) tiling window manager.
 
-![SketchyBar Config Appearance](demo.png)
+<p align="center">
+  <img src="demo.png" alt="SketchyBar Minimalist Vertical Dock" width="220" />
+</p>
 
-## Notable Enhancements
+---
 
-In addition to possessing all the features of the aforementioned configuration, this also offers the following improvements:
+## Highlights & Features
 
-- **Battery Health** information, displayed when the Battery Widget is clicked.
-- Redesigned **Calendar Widget** that takes up less space and opens Calendar when clicked.
-- **Clipboard Widget** that displays up to five of your last copied items. Clicking an item re-copies it.
-- Support for a **JSON Configuration File** to customize various aspects of the bar.
-- Improved **Media Widget**, with superior play/pause functionality.
-- **RAM Widget** that displays the current RAM utilization, along with a graph.
-- **Settings Widget** to refresh SketchyBar, quit SketchyBar, open the configuration file in VSCode, or upgrade to the latest version.
-- **Stock Widget** that displays current stock trends, with 1D, 5D, and 1M data.
-- **VPN Icon** that displays on the **Wifi Widget**, when a connected to a VPN.
-- **Weather Widget** that displays current temperature and conditions, with a pop-up menu displaying semi-hourly forecast for the next two days.
+- **Frosted Glass Floating Capsule (`position = "left"`)**:
+  - Anchored on the left edge of the screen (`height = 46` width, `y_offset = 160`, `margin = 8`).
+  - Dark translucent glass background (`0xc81c1a19`) with `blur_radius = 30`, `corner_radius = 12`, and a subtle 1px border (`0x28ffffff`).
+  - 12px breathing room padding at the top and bottom pill caps.
+- **Tiling Window Manager Synergy (`Cranberry`)**:
+  - Gaps and padding tuned for zero window overlap (`cberry config padding 8 8 8 62`).
+- **Interactive Workspace Switcher (1–5)**:
+  - Inactive spaces: muted gray numerals (`0x77ffffff`).
+  - Active space: centered rounded cyan rectangle (`34x26px`, `corner_radius = 8`, `#5de4f0`) with bold charcoal text (`#0b1215`).
+  - Click any number or switch spaces via Cranberry to dynamically update focus.
+- **Vertically Stacked Typography Clock**:
+  - Centered typographic hierarchy:
+    - **Hour**: Bold 18pt bright white (`#f5f5f5`)
+    - **Minute**: Medium 18pt soft white (`#d4d4d8`)
+    - **AM/PM**: Regular 10pt muted gray (`#9ca3af`)
+    - **Day & Date**: Regular 9pt muted gray (`#71717a`)
+- **Semantic System Statistics**:
+  - Vertical icon-above-value layout with semantic color coding:
+    - 􀊧 **Volume**: Soft ice-cyan (`#d6f4f7`)
+    - 􀧓 **CPU Temperature**: Warm amber (`#e89e64`) reading live Apple Silicon SMC sensors via native C helper
+    - 􀫦 **RAM Utilization**: Clean white (`#e5e7eb`)
+    - ↑↓ **Network Speed**: Dim gray (`#7a7a80`)
+    - 􀛨 **Battery**: Soft green (`#7ee081`) with dynamic amber (<30%) and red (<15%) state transitions
 
-## Installation
+---
 
-1. Install [Homebrew](https://brew.sh/).
+## Requirements & Fonts
 
-2. Install [Luarocks](https://luarocks.org/):
+- macOS 13+ (Apple Silicon supported)
+- [SketchyBar](https://github.com/FelixKratz/SketchyBar)
+- [Cranberry Window Manager](https://github.com/koekeishiya/yabai) (or yabai / AeroSpace)
+- Fonts:
+  - **SF Pro** (Apple system font / SF Pro Display)
+  - **JetBrainsMono Nerd Font** (for monospace numerals and icons)
 
-```bash
-brew install luarocks
-```
+---
 
-3. Install [Lunajson](https://github.com/grafi-tt/lunajson):
+## Installation & Setup
 
-```bash
-sudo luarocks install lunajson
-```
+1. **Install SketchyBar**:
+   ```bash
+   brew tap FelixKratz/formulae
+   brew install sketchybar
+   ```
 
-4. Install [yfinance](https://pypi.org/project/yfinance/).
+2. **Clone Configuration**:
+   ```bash
+   git clone https://github.com/Valo-Asura/sketchybar-config.git ~/.config/sketchybar
+   ```
 
-5. Run the following script to clone this repository and install dependencies. Note: you may need to run the script twice for everything to install properly.
+3. **Build Helper Binaries** (for CPU load and network events):
+   ```bash
+   cd ~/.config/sketchybar/helpers && make
+   ```
 
-```bash
-sudo curl -L https://raw.githubusercontent.com/TheGoldenPatrik1/sketchybar-config/main/scripts/install.sh | sh
-```
+4. **Start / Reload SketchyBar**:
+   ```bash
+   sketchybar --reload
+   ```
 
-6. Restart SketchyBar:
+5. **Configure Cranberry Padding** (in `~/.config/cranberry/cberryrc`):
+   ```bash
+   cberry config padding 8 8 8 62
+   cberry config gap 8
+   ```
 
-```
-brew services restart sketchybar
-```
+---
 
-7. Go to "Settings" -> "Control Center" -> "Automatically hide and show the menu bar" and change its value to "Always."
+## License
 
-**Note**: to get the most out of this configuration, it is also recommended to install [yabai](https://github.com/koekeishiya/yabai).
-
-## Configuration
-
-The default configuration values are defined in full [here](settings.lua). You may overwrite any or all of them by creating a `config.json` file in the root directory of the project.
-
-**A note about the weather**: The Weather Widget draws from [wttr.in](https://github.com/chubin/wttr.in), which automatically determines your location based on IP address. However, their IP-to-location mapping mechanism is unreliable, especially when using a VPN. To recieve accurate location-based weather data, it may be advisable to configure one of the weather-related options below.
-
-| Name | Type | Default | Description |
-| ---- | ---- | ---- | ---- |
-| `bar_height` | `integer` | `40` | The height of the bar. |
-| `calendar.click_script` | `string` | `open -a Calendar` | Script to run when the Calendar Widget gets clicked. |
-| `clipboard.max_items` | `integer` | `5` | Number of items to save in the Clipboard Widget. |
-| `font` | `object` | [helpers/default_font.lua](helpers/default_font.lua) | Font configuration. |
-| `group_paddings` | `integer` | `5` | Padding used to separate groups in the bar. |
-| `hide_widgets` | `array` | `[]` | List of widget names that you want hidden from the bar. |
-| `icons` | `string` | `sf-symbols` | Icon library to use; other option is `NerdFont`. |
-| `paddings` | `integer` | `3` | Padding used throughout the bar. |
-| `python_command` | `string` | `python` | Command to use to run Python. The shell environment that SketchyBar uses to execute commands is a bit minimal, so you may need to specify an absolute path to your Python version of choice. |
-| `stocks.default_symbol` | `object` | `{ "symbol": "^GSPC", "name": "S&P 500" }` | The default stock symbol to track and show on the Stock Widget. |
-| `stocks.symbols` | `array` | `[ {"symbol": "^DJI", "name": "Dow"}, {"symbol": "^IXIC", "name": "Nasdaq"}, {"symbol": "^RUT", "name": "Russell 2K"} ]` | Stock symbols to track and show on the Stock Widget's popup menu. For each item, you must provide a `symbol` but you do not have to provide a `name`. |
-| `weather.location` | `string` | N/A | Default location used to pass to [wttr.in](https://github.com/chubin/wttr.in). You can use any data that wttr.in accepts, but, in the United States, best results are usually achieved with `City+State` where `State` is the full name of the state and not an abbrevation (e.g., `Chicago+Illinois`). |
-| `weather.use_shortcut` | `boolean` | `false` | Whether to try to run [this simple shortcut](https://www.icloud.com/shortcuts/6d1018c04fe2490cb241425d8f133e0c) find your location to pass to wttr.in. You must install the shortcut first. |
+MIT
