@@ -1,0 +1,93 @@
+#!/bin/sh
+# cranberry configuration file (~/.config/cranberry/cberryrc)
+# Runs automatically on cberry start / cberry reload
+
+# Gaps and screen padding (top right bottom left)
+# Left padding is set to 62px to accommodate the 46px left vertical bar with 8px margin + 8px gap
+cberry config gap 8
+cberry config padding 8 8 8 62
+
+# Window animations (slide into place smoothly with native macOS curve)
+cberry config animation on
+
+# Split ratio and resize increments
+cberry config split_ratio 0.5
+cberry config resize_step 0.05
+
+# Mouse interaction: hold Alt and drag to move/swap, right drag to resize
+cberry config drag_swap on
+cberry config drag_color 76cce040
+cberry config mouse_modifier alt
+cberry config mouse_action1 move
+cberry config mouse_action2 resize
+cberry config mouse_insert_modifier cmd
+
+# Focus behavior
+cberry config mouse_follows_focus off
+cberry config focus_follows_mouse off
+
+# Active window border ring
+cberry config border on
+cberry config border_color 76cce0ff
+cberry config border_width 2
+cberry config border_radius 10
+
+# Float rules for utilities and dialogs
+cberry rule float "System Settings"
+cberry rule float "Calculator"
+cberry rule float "Archive Utility"
+cberry rule float "Activity Monitor"
+cberry rule float "Finder"
+cberry rule float "Preview"
+cberry rule float "Raycast"
+cberry rule float "BetterDisplay"
+cberry rule float "Motrix"
+cberry rule float "Vorssaint"
+
+# Directional Window Focus (Alt + H/J/K/L)
+cberry bind 'alt - h : cberry focus left'
+cberry bind 'alt - j : cberry focus down'
+cberry bind 'alt - k : cberry focus up'
+cberry bind 'alt - l : cberry focus right'
+
+# Window Swap / Move (Shift + Alt + H/J/K/L)
+cberry bind 'shift + alt - h : cberry swap left'
+cberry bind 'shift + alt - j : cberry swap down'
+cberry bind 'shift + alt - k : cberry swap up'
+cberry bind 'shift + alt - l : cberry swap right'
+
+# Window Resize (Ctrl + Alt + H/J/K/L)
+cberry bind 'ctrl + alt - h : cberry resize left'
+cberry bind 'ctrl + alt - j : cberry resize down'
+cberry bind 'ctrl + alt - k : cberry resize up'
+cberry bind 'ctrl + alt - l : cberry resize right'
+
+# Layout Transformations
+cberry bind 'alt - r : cberry rotate'
+cberry bind 'alt - e : cberry toggle-split'
+cberry bind 'alt - 0 : cberry balance'
+cberry bind 'alt - m : cberry zoom'
+cberry bind 'alt - t : cberry float'
+
+# Switch Workspaces / Spaces (Alt + 1..9)
+cberry bind 'alt - 1 : cberry space 1'
+cberry bind 'alt - 2 : cberry space 2'
+cberry bind 'alt - 3 : cberry space 3'
+cberry bind 'alt - 4 : cberry space 4'
+cberry bind 'alt - 5 : cberry space 5'
+cberry bind 'alt - 6 : cberry space 6'
+cberry bind 'alt - 7 : cberry space 7'
+cberry bind 'alt - 8 : cberry space 8'
+cberry bind 'alt - 9 : cberry space 9'
+cberry bind 'alt - tab : cberry space recent'
+
+# Send Window to Workspace (Shift + Alt + 1..9)
+cberry bind 'shift + alt - 1 : cberry send 1'
+cberry bind 'shift + alt - 2 : cberry send 2'
+cberry bind 'shift + alt - 3 : cberry send 3'
+cberry bind 'shift + alt - 4 : cberry send 4'
+cberry bind 'shift + alt - 5 : cberry send 5'
+cberry bind 'shift + alt - 6 : cberry send 6'
+cberry bind 'shift + alt - 7 : cberry send 7'
+cberry bind 'shift + alt - 8 : cberry send 8'
+cberry bind 'shift + alt - 9 : cberry send 9'

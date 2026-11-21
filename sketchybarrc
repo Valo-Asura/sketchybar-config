@@ -1,0 +1,11 @@
+#!/usr/bin/env lua
+
+local home = os.getenv("HOME") or "/Users/vimal"
+local config_dir = os.getenv("CONFIG_DIR") or (home .. "/.config/sketchybar")
+package.path = package.path .. ";" .. config_dir .. "/?.lua;" .. config_dir .. "/?/init.lua;/opt/homebrew/share/lua/5.5/?.lua;/opt/homebrew/share/lua/5.5/?/init.lua"
+package.cpath = package.cpath .. ";/opt/homebrew/lib/lua/5.5/?.so;" .. home .. "/.local/share/sketchybar_lua/?.so"
+
+-- Load the sketchybar-package and prepare the helper binaries
+require("helpers")
+require("init")
+
