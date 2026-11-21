@@ -3,7 +3,12 @@
 A sleek, frosted-glass vertical floating status bar for macOS powered by [SketchyBar](https://github.com/FelixKratz/SketchyBar) and integrated seamlessly with the [Cranberry](https://github.com/koekeishiya/yabai) tiling window manager.
 
 <p align="center">
-  <img src="demo.png" alt="SketchyBar Minimalist Vertical Dock" width="220" />
+  <img src="demo.png" alt="SketchyBar Minimalist Vertical Dock" width="90" />
+</p>
+
+### Full Desktop Overview
+<p align="center">
+  <img src="desktop.png" alt="Desktop Setup with Cranberry WM" width="800" />
 </p>
 
 ---
