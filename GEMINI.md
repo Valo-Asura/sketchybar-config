@@ -13,10 +13,13 @@ This document locks the approved vertical left status bar design. Do not modify 
   - Border: `border_width = 1`, `border_color = 0x28ffffff` (subtle 1px border)
 - **Window Level**: `topmost = "window"`, `shadow = "off"`, `font_smoothing = "on"`
 
-## 2. Window Manager Padding (`~/.config/cranberry/cberryrc`)
-- Screen padding: `cberry config padding 8 8 8 62`
-  - Left padding is 62px to accommodate the 8px screen margin + 46px bar width + 8px gap before tiled windows.
-  - Window gaps: `cberry config gap 8`
+## 2. Window Manager Configuration (`~/.config/yabai/yabairc` & `~/.config/skhd/skhdrc`)
+- **Tiling Window Manager**: Yabai (bsp layout) + skhd (hotkey daemon) + JankyBorders
+- **Screen Padding**:
+  - `top_padding 8`, `bottom_padding 8`, `right_padding 8`
+  - `left_padding 62`: Accommodates the 8px screen margin + 46px bar width + 8px gap before tiled windows.
+- **Window Gaps**: `window_gap 8`
+- **Active Window Border**: JankyBorders with `active_color=0xff5de4f0` (matching cyan pill), `width=2.0`, `style=round`.
 
 ## 3. Top Section — Workspaces (`~/.config/sketchybar/items/spaces.lua`)
 - Spaces 1 through 5, position `left`:

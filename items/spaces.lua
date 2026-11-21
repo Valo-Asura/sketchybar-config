@@ -37,7 +37,7 @@ for i = 1, 5, 1 do
   spaces[i] = space
 
   space:subscribe("mouse.clicked", function(env)
-    sbar.exec("/opt/homebrew/bin/cberry space " .. i)
+    sbar.exec("/opt/homebrew/bin/yabai -m space --focus " .. i)
     for j = 1, 5 do
       local is_active = (j == i)
       spaces[j]:set({
@@ -79,20 +79,26 @@ local spaces_divider = sbar.add("item", "spaces.divider", {
 })
 
 local function update_spaces()
-  sbar.exec("/opt/homebrew/bin/cberry query --spaces 2>/dev/null", function(output)
+  sbar.exec("/opt/homebrew/bin/yabai -m query --spaces 2>/dev/null", function(output)
     if not output then return end
     local focused_idx = 1
     if type(output) == "table" then
       for _, sp in ipairs(output) do
-        if sp.focused == true then
+        if sp["has-focus"] == true or sp.focused == 1 or sp.focused == true then
           focused_idx = tonumber(sp.index)
           break
         end
       end
     elseif type(output) == "string" then
-      for idx in output:gmatch('"index":(%d+)[^}]-"focused":true') do
+      for idx in output:gmatch('"index":(%d+)[^}]-"has%-focus":true') do
         focused_idx = tonumber(idx)
         break
+      end
+      if not focused_idx then
+        for idx in output:gmatch('"index":(%d+)[^}]-"focused":1') do
+          focused_idx = tonumber(idx)
+          break
+        end
       end
     end
 
@@ -125,6 +131,6 @@ local watcher = sbar.add("item", "space_watcher", {
   update_freq = 1,
   updates = true,
 })
-watcher:subscribe({ "space_change", "space_windows_change", "system_woke", "routine", "forced" }, update_spaces)
+watcher:subscribe({ "space_change", "windows_on_spaces", "space_windows_change", "system_woke", "routine", "forced" }, update_spaces)
 
 update_spaces()

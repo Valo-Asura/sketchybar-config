@@ -1,6 +1,6 @@
 # SketchyBar Minimalist Vertical Dock
 
-A sleek, frosted-glass vertical floating status bar for macOS powered by [SketchyBar](https://github.com/FelixKratz/SketchyBar) and integrated seamlessly with the [Cranberry](https://github.com/koekeishiya/yabai) tiling window manager.
+A sleek, frosted-glass vertical floating status bar for macOS powered by [SketchyBar](https://github.com/FelixKratz/SketchyBar) and integrated seamlessly with the [yabai](https://github.com/koekeishiya/yabai) tiling window manager.
 
 <p align="center">
   <img src="demo.png" alt="SketchyBar Minimalist Vertical Dock" width="90" />
@@ -8,7 +8,7 @@ A sleek, frosted-glass vertical floating status bar for macOS powered by [Sketch
 
 ### Full Desktop Overview
 <p align="center">
-  <img src="desktop.png" alt="Desktop Setup with Cranberry WM" width="800" />
+  <img src="desktop.png" alt="Desktop Setup with yabai" width="800" />
 </p>
 
 ---
@@ -19,12 +19,12 @@ A sleek, frosted-glass vertical floating status bar for macOS powered by [Sketch
   - Anchored on the left edge of the screen (`height = 46` width, `y_offset = 160`, `margin = 8`).
   - Dark translucent glass background (`0xc81c1a19`) with `blur_radius = 30`, `corner_radius = 12`, and a subtle 1px border (`0x28ffffff`).
   - 12px breathing room padding at the top and bottom pill caps.
-- **Tiling Window Manager Synergy (`Cranberry`)**:
-  - Gaps and padding tuned for zero window overlap (`cberry config padding 8 8 8 62`).
+- **Tiling Window Manager Synergy (`yabai` + `skhd` + `borders`)**:
+  - Gaps and padding tuned for zero window overlap (`left_padding 62`, `window_gap 8`).
 - **Interactive Workspace Switcher (1–5)**:
   - Inactive spaces: muted gray numerals (`0x77ffffff`).
   - Active space: centered rounded cyan rectangle (`34x26px`, `corner_radius = 8`, `#5de4f0`) with bold charcoal text (`#0b1215`).
-  - Click any number or switch spaces via Cranberry to dynamically update focus.
+  - Click any number or switch spaces via yabai / skhd to dynamically update focus.
 - **Vertically Stacked Typography Clock**:
   - Centered typographic hierarchy:
     - **Hour**: Bold 18pt bright white (`#f5f5f5`)
@@ -45,7 +45,8 @@ A sleek, frosted-glass vertical floating status bar for macOS powered by [Sketch
 
 - macOS 13+ (Apple Silicon supported)
 - [SketchyBar](https://github.com/FelixKratz/SketchyBar)
-- [Cranberry Window Manager](https://github.com/koekeishiya/yabai) (or yabai / AeroSpace)
+- [yabai](https://github.com/koekeishiya/yabai) & [skhd](https://github.com/koekeishiya/skhd)
+- [JankyBorders](https://github.com/FelixKratz/JankyBorders)
 - Fonts:
   - **SF Pro** (Apple system font / SF Pro Display)
   - **JetBrainsMono Nerd Font** (for monospace numerals and icons)
@@ -54,10 +55,11 @@ A sleek, frosted-glass vertical floating status bar for macOS powered by [Sketch
 
 ## Installation & Setup
 
-1. **Install SketchyBar**:
+1. **Install Window Manager Stack**:
    ```bash
-   brew tap FelixKratz/formulae
-   brew install sketchybar
+   brew tap koekeishiya/formulae
+   brew tap felixkratz/formulae
+   brew install sketchybar yabai skhd borders
    ```
 
 2. **Clone Configuration**:
@@ -70,15 +72,12 @@ A sleek, frosted-glass vertical floating status bar for macOS powered by [Sketch
    cd ~/.config/sketchybar/helpers && make
    ```
 
-4. **Start / Reload SketchyBar**:
+4. **Start Services**:
    ```bash
    sketchybar --reload
-   ```
-
-5. **Configure Cranberry Padding** (in `~/.config/cranberry/cberryrc`):
-   ```bash
-   cberry config padding 8 8 8 62
-   cberry config gap 8
+   yabai --start-service
+   skhd --start-service
+   brew services start borders
    ```
 
 ---
