@@ -26,7 +26,7 @@ local battery_val = sbar.add("item", "widgets.battery.val", {
     height = 13,
   },
   padding_left = 0,
-  padding_right = 6, -- 6px bottom padding inside the bar
+  padding_right = 0,
 })
 
 -- 2. Icon (stacked directly above value)

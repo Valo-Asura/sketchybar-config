@@ -7,6 +7,7 @@ This document locks the approved vertical left status bar design. Do not modify 
 - **Bar Width**: `height = 46` (in SketchyBar vertical mode, `height` specifies bar width)
 - **Margins & Offsets**: `margin = 8`, `x_offset = 0`, `y_offset = 160` (centered vertically on a 900px display, producing a 580px tall dock)
 - **Corner & Blur**: `corner_radius = 12`, `blur_radius = 30`
+- **Internal Padding**: `padding_left = 12`, `padding_right = 12` (provides 12px breathing room from the top and bottom curved pill ends)
 - **Colors**:
   - Background: `0xc81c1a19` (frosted translucent dark charcoal)
   - Border: `border_width = 1`, `border_color = 0x28ffffff` (subtle 1px border)
@@ -33,7 +34,7 @@ This document locks the approved vertical left status bar design. Do not modify 
 ## 5. Bottom Section — Stacked Widgets (`~/.config/sketchybar/items/widgets/`)
 Items stack bottom-up in `position = "right"`. Added in exact order from bottom to top:
 1. **Battery**:
-   - `widgets.battery.val`: font `SF Pro:Semibold:9.5`, string `<charge>%`, color `0xff7ee081` (green, amber <30%, red <15%), `padding_right = 6` (bottom dock margin).
+   - `widgets.battery.val`: font `SF Pro:Semibold:9.5`, string `<charge>%`, color `0xff7ee081` (green, amber <30%, red <15%), `padding_right = 0` (dock margin provided by `bar.padding_right`).
    - `widgets.battery.icon`: glyph `􀛨`, font `SF Pro:Regular:13.0`, color matching battery state.
 2. **Network**:
    - `widgets.wifi.val`: font `SF Pro:Semibold:9.5`, string `<speed> K` (default `0 K`), color `0xff7a7a80`, `padding_right = 8`.

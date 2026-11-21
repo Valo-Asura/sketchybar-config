@@ -23,15 +23,13 @@ for i = 1, 5, 1 do
     },
     label = { drawing = false },
     padding_right = 1,
-    padding_left = (i == 1) and 6 or 1,
+    padding_left = 1,
     background = {
       drawing = true,
       color = 0x00000000,
       border_width = 0,
       height = 26,
       corner_radius = 8,
-      padding_left = 0,
-      padding_right = 0,
     },
   })
 
@@ -55,9 +53,7 @@ for i = 1, 5, 1 do
           color = is_active and colors.ref.cyan_active or 0x00000000,
           corner_radius = 8,
           height = 26,
-          padding_left = 0,
-          padding_right = 0,
-        }
+        },
       })
     end
   end)
@@ -113,9 +109,7 @@ local function update_spaces()
           color = is_active and colors.ref.cyan_active or 0x00000000,
           corner_radius = 8,
           height = 26,
-          padding_left = 0,
-          padding_right = 0,
-        }
+        },
       })
     end
   end)
