@@ -16,6 +16,7 @@ for i = 1, 5, 1 do
       },
       string = tostring(i),
       align = "center",
+      width = 34,
       padding_left = 0,
       padding_right = 0,
       color = colors.ref.inactive_space,
@@ -46,7 +47,9 @@ for i = 1, 5, 1 do
             family = "SF Pro",
             style = is_active and "Bold" or "Medium",
             size = 12.0
-          }
+          },
+          width = 34,
+          align = "center",
         },
         background = {
           drawing = true,
@@ -102,7 +105,9 @@ local function update_spaces()
             family = "SF Pro",
             style = is_active and "Bold" or "Medium",
             size = 12.0
-          }
+          },
+          width = 34,
+          align = "center",
         },
         background = {
           drawing = true,
