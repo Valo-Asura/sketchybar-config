@@ -6,7 +6,7 @@ local spaces = {}
 for i = 1, 5, 1 do
   local space = sbar.add("item", "space." .. i, {
     position = "left",
-    width = 28,
+    width = 34,
     align = "center",
     icon = {
       font = {
@@ -28,8 +28,8 @@ for i = 1, 5, 1 do
       drawing = true,
       color = 0x00000000,
       border_width = 0,
-      height = 28,
-      corner_radius = 14,
+      height = 26,
+      corner_radius = 8,
       padding_left = 0,
       padding_right = 0,
     },
@@ -53,8 +53,8 @@ for i = 1, 5, 1 do
         background = {
           drawing = true,
           color = is_active and colors.ref.cyan_active or 0x00000000,
-          corner_radius = 14,
-          height = 28,
+          corner_radius = 8,
+          height = 26,
           padding_left = 0,
           padding_right = 0,
         }
@@ -111,8 +111,8 @@ local function update_spaces()
         background = {
           drawing = true,
           color = is_active and colors.ref.cyan_active or 0x00000000,
-          corner_radius = 14,
-          height = 28,
+          corner_radius = 8,
+          height = 26,
           padding_left = 0,
           padding_right = 0,
         }
