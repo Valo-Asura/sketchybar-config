@@ -19,8 +19,8 @@ This document locks the approved vertical left status bar design. Do not modify 
 
 ## 3. Top Section — Workspaces (`~/.config/sketchybar/items/spaces.lua`)
 - Spaces 1 through 5, position `left`:
-  - **Inactive Spaces**: `icon.color = 0x77ffffff` (muted gray numerals), transparent background `0x00000000`, font `SF Pro:Medium:12.0`.
-  - **Active Workspace**: Rounded cyan pill `0xff5de4f0`, `corner_radius = 8`, `height = 26`, text `0xff0b1215` (bold dark charcoal), font `SF Pro:Bold:12.0`.
+  - **Inactive Spaces**: `icon.color = 0x77ffffff` (muted gray numerals), transparent background `0x00000000`, font `SF Pro:Medium:12.0`, `width = 28`.
+  - **Active Workspace**: True geometric cyan circle (`28x28px`), `0xff5de4f0`, `corner_radius = 14`, `width = 28`, `height = 28`, `padding_left = 0`, `padding_right = 0`, text `0xff0b1215` (bold dark charcoal), font `SF Pro:Bold:12.0`.
 - **Top Divider Line**: `spaces.divider` (height = 1, `background.color = 0x22ffffff`, `padding_left = 10`).
 
 ## 4. Center Section — Vertically Stacked Clock (`~/.config/sketchybar/items/calendar.lua`)
