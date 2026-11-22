@@ -2,8 +2,9 @@ local colors = require("colors")
 local settings = require("settings")
 
 local spaces = {}
+local visible_space_count = 3
 
-for i = 1, 5, 1 do
+for i = 1, visible_space_count do
   local space = sbar.add("item", "space." .. i, {
     position = "left",
     width = 34,
@@ -38,7 +39,7 @@ for i = 1, 5, 1 do
 
   space:subscribe("mouse.clicked", function(env)
     sbar.exec("/opt/homebrew/bin/yabai -m space --focus " .. i)
-    for j = 1, 5 do
+    for j = 1, #spaces do
       local is_active = (j == i)
       spaces[j]:set({
         icon = {
@@ -102,7 +103,7 @@ local function update_spaces()
       end
     end
 
-    for i = 1, 5 do
+    for i = 1, #spaces do
       local is_active = (i == focused_idx)
       spaces[i]:set({
         icon = {
